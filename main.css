@@ -81,6 +81,7 @@ html, body {
     background-color: white;
     border-radius: 10px;
 }
+
 .mainpage .info {
     position: absolute;
     top: 10px;
@@ -153,3 +154,10 @@ html, body {
     display: inline-block;
     margin: 5px 0px 0px 50px;
 }
+
+img {
+    float: right;
+    padding: 30px;
+    width: 180px;
+    height: 150px;
+  }
