@@ -55,23 +55,23 @@ function People(people) {
         }
     }
     else{
-        if (people){
-            count = 0;
+        if (people) {
             this.place = places[parseInt((places.length - 1) * Math.random())];
             this.who = people.id;
-            this.id = peopleList.length;
+            this.date = randomDate(startdate);
             this.infections = [];
-            let newdate = people.date;
-            newdate += 86400000;
-            this.date = newdate;
             ++count;
         }
-        else{
+        else {
             this.place = places[2];
-            this.who = "first";
-            this.date = startdate;
-            this.id = peopleList.length;
+            this.who = peopleList[0].id;
+            let newdate = peopleList[0].date;
+            newdate += 86400000;
+            this.date = newdate;
         }
+        this.id = peopleList.length;
+        this.infections = [];
+        ++count;
         
         for (let i = 0; i < infectionMAX * Math.random() - 1; i++) {
             if (count > 50 * Math.random()) {
@@ -84,7 +84,6 @@ function People(people) {
         }
     }
     gamestart++;
-    count = 0;
 }
 
 var startButton = document
@@ -92,6 +91,8 @@ var startButton = document
   .addEventListener("click", () => {
     this.startGame();
   });
+
+var Chart = require('chart.js');
 
 startGame = () => {
     People();
