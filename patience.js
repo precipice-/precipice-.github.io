@@ -44,7 +44,6 @@ function People(people) {
         this.infections = [];
         ++count;
 
-
         for (let i = 0; i < infectionMAX * Math.random() - 1; i++) {
             if (count > 50 * Math.random()) {
                 return;
@@ -54,30 +53,38 @@ function People(people) {
             this.infections.push(p);
             peopleList.push(p);
         }
-        start++;
     }
     else{
-        count = 0;
-        this.place = places[parseInt((places.length - 1) * Math.random())];
-        this.who = people.id;
-        this.id = peopleList.length;
-        this.infections = [];
-        this.date = people.date;
-        ++count;
-    
+        if (people){
+            count = 0;
+            this.place = places[parseInt((places.length - 1) * Math.random())];
+            this.who = people.id;
+            this.id = peopleList.length;
+            this.infections = [];
+            let newdate = people.date;
+            newdate += 86400000;
+            this.date = newdate;
+            ++count;
+        }
+        else{
+            this.place = places[2];
+            this.who = "first";
+            this.date = startdate;
+            this.id = peopleList.length;
+        }
+        
         for (let i = 0; i < infectionMAX * Math.random() - 1; i++) {
             if (count > 50 * Math.random()) {
                 return;
             }
             let p = new People(this);
-            let date1 = people.date.getTime();
-            date1 += 86400000;
-            this.date = date1;
+            this.date = randomDate(date);
             this.infections.push(p);
             peopleList.push(p);
         }
     }
-
+    gamestart++;
+    count = 0;
 }
 
 var startButton = document
@@ -88,7 +95,45 @@ var startButton = document
 
 startGame = () => {
     People();
-    console.log("Patience is created");
+    console.log("list", peopleList);
+    /*
+    var ctx = document.getElementById('myChart');
+    
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Red'],
+            datasets: [{
+                label: '일별 환자 수',
+                data: peopleList,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+*/
 }
 
 //let first = new People();
@@ -97,6 +142,5 @@ startGame = () => {
 
 /*
 console.log("first", first);
-console.log("list", peopleList);
 console.log("list", peopleList);
 */
