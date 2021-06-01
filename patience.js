@@ -15,8 +15,9 @@ const infectionMAX = 5;
 
 let peopleList = [];
 
-let count = 0;
-let startdate = new Date(1606921200000);
+let gamestart = 0; // 초기일자 감지
+let count = 0; // 일일 감염자 수 제어
+let startdate = new Date(1606921200000); //2020.12.02
 
 function randomDate(start) {
     // 86400000 = one day
@@ -26,8 +27,8 @@ function randomDate(start) {
     return date;
 }
 
-class People {
-    constructor(people) {
+function People(people) {
+    if (gamestart == 0){
         if (people) {
             this.place = places[parseInt((places.length - 1) * Math.random())];
             this.who = people.id;
@@ -53,11 +54,9 @@ class People {
             this.infections.push(p);
             peopleList.push(p);
         }
+        start++;
     }
-}
-
-class nextPeople {
-    constructor(people) {
+    else{
         count = 0;
         this.place = places[parseInt((places.length - 1) * Math.random())];
         this.who = people.id;
@@ -65,7 +64,7 @@ class nextPeople {
         this.infections = [];
         this.date = people.date;
         ++count;
-
+    
         for (let i = 0; i < infectionMAX * Math.random() - 1; i++) {
             if (count > 50 * Math.random()) {
                 return;
@@ -78,10 +77,22 @@ class nextPeople {
             peopleList.push(p);
         }
     }
+
 }
 
-let first = new People();
-let next = new nextPeople(peopleList[0]);
+var startButton = document
+  .querySelector("#startGame")
+  .addEventListener("click", () => {
+    this.startGame();
+  });
+
+startGame = () => {
+    People();
+    console.log("Patience is created");
+}
+
+//let first = new People();
+//let next = new nextPeople(peopleList[0]);
 
 
 /*
