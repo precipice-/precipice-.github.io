@@ -38,7 +38,7 @@ function People(people) {
             this.place = places[2];
             this.who = "first";
             this.date = startdate;
-            this.id = 0;
+            // this.id = 0;
         }
         this.id = peopleList.length;
         this.infections = [];
@@ -92,21 +92,19 @@ var startButton = document
     this.startGame();
   });
 
-var Chart = require('chart.js');
-
 startGame = () => {
     People();
+    count = 0;
     console.log("list", peopleList);
-    /*
     var ctx = document.getElementById('myChart');
     
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['Red'],
+            labels: ['D+0'],
             datasets: [{
                 label: '일별 환자 수',
-                data: peopleList,
+                data: peopleList.length,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -134,7 +132,7 @@ startGame = () => {
             }
         }
     });
-*/
+    myChart.destroy();
 }
 
 //let first = new People();

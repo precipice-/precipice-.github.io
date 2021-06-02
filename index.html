@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
     <link rel="stylesheet" href="./main.css">
+    <script type="module" src="https://cdn.jsdelivr.net/npm/chart.js@3.3.2/dist/chart.min.js"></script>
 </head>
 <body>
     <!-- 메인 페이지 -->
@@ -36,14 +37,14 @@
                     일별 확진자 그래프
                 </div>
                 <canvas id="myChart" width="300" height="250">
-                    
+
                 </canvas>
                 <div class="item">
                     기간 및 연령별 확진자 그래프
                 </div>
-                <div class="graph">
+                <canvas id="myChart2" width="300" height="250">
                     
-                </div>
+                </canvas>
                 <form>
                     <input type='button' value="업무 시작" id="startGame">
                     <script src="patience.js"></script>
