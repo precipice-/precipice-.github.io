@@ -132,7 +132,7 @@ startGame = () => {
             }
         }
     });
-    myChart.destroy();
+    // myChart.destroy();
 }
 
 //let first = new People();
